@@ -69,12 +69,25 @@ export function Home() {
             flexDirection: "column",
             justifyContent: "center",
             maxHeight: "100%",
+            // gap: "1rem",
           }}
         >
           <div>
             <img src={animals} alt="" />
           </div>
-          <div>
+          <div
+            style={{
+              display: "flex",
+              color: "#fff",
+              justifyContent: "center",
+              background: "transparent",
+              border: "1px solid #fff",
+              borderRadius: "10px",
+              // maxWidth: "10%",
+              // minHeight: "7%",
+              alignItems: "center",
+            }}
+          >
             <SelectedAcronymState />
           </div>
           <Typography style={{ color: "#fff" }}>seráse</Typography>

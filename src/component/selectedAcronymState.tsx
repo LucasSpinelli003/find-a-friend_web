@@ -19,20 +19,22 @@ export function SelectedAcronymState() {
     },
   ];
 
-  const [key, setKey] = useState("");
+  const ufs = ["SP", "RJ", "SC"];
+
+  const [key, setKey] = useState("UF");
   return (
     <Dropdown
       menu={{
         items,
         selectable: true,
-        defaultSelectedKeys: ["3"],
-        onClick: () => {
-            setKey()
+        defaultSelectedKeys: ["key"],
+        onClick: (e) => {
+          setKey(ufs[Number(e.key) - 1]);
         },
       }}
     >
       <Typography.Link>
-        <Space>
+        <Space style={{ color: "#fff" }}>
           {key}
           <DownOutlined />
         </Space>
