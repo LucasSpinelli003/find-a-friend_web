@@ -1,7 +1,12 @@
-import First from "./component/test";
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./Router";
 
 function App() {
-  return <First />;
+  return (
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  );
 }
 
 export default App;
