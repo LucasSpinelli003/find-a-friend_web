@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -17,11 +16,6 @@ const First: React.FC = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  {menuItems.map(item => (
-    <Menu.Item key={item.key} icon={item.icon}>
-      <Link to={item.link}>{item.label}</Link>
-    </Menu.Item>
-
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -35,7 +29,6 @@ const First: React.FC = () => {
               key: "1",
               icon: <UserOutlined />,
               label: "nav 1",
-              onClick: Link
             },
             {
               key: "2",

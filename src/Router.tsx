@@ -1,12 +1,15 @@
 import { Route, Routes } from "react-router-dom";
+import { DefaultLayout } from "./layouts/DefaultLayout";
+import First from "./component/test";
 import { Home } from "./Pages/Home";
 
 export function Router() {
   return (
-    <>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<DefaultLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/pets" element={<First />} />
+      </Route>
+    </Routes>
   );
 }
