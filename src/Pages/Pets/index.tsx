@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -7,15 +7,17 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
+import { useNavigate } from "react-router-dom";
+import FetchDataExample from "../../component/methods/pets/get";
 
-const { Header, Sider, Content } = Layout;
-
-const First: React.FC = () => {
+export function PetsDashBoard() {
+  const { Header, Sider, Content } = Layout;
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const navigate = useNavigate();
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -38,7 +40,10 @@ const First: React.FC = () => {
             {
               key: "3",
               icon: <UploadOutlined />,
-              label: "nav 3",
+              label: "back",
+              onClick: () => {
+                navigate("/");
+              },
             },
           ]}
         />
@@ -66,11 +71,9 @@ const First: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
+          <FetchDataExample />
         </Content>
       </Layout>
     </Layout>
   );
-};
-
-export default First;
+}
