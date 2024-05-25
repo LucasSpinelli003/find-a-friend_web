@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -8,7 +8,8 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
-import FetchDataExample from "../../component/methods/pets/get";
+import {FetchDataExample} from "../../component/methods/pets/get";
+import { Context } from "../../Context/Provider";
 
 export function PetsDashBoard() {
   const { Header, Sider, Content } = Layout;
@@ -18,6 +19,9 @@ export function PetsDashBoard() {
   } = theme.useToken();
 
   const navigate = useNavigate();
+
+  const { city, setCity } = useContext(Context);
+  
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -42,6 +46,7 @@ export function PetsDashBoard() {
               icon: <UploadOutlined />,
               label: "back",
               onClick: () => {
+                setCity("São Paulo");
                 navigate("/");
               },
             },
@@ -71,7 +76,7 @@ export function PetsDashBoard() {
             borderRadius: borderRadiusLG,
           }}
         >
-          <FetchDataExample />
+          <FetchDataExample city={city} />
         </Content>
       </Layout>
     </Layout>

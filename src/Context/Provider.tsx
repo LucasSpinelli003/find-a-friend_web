@@ -12,7 +12,7 @@ interface ContextProviderProps {
 export const Context = createContext({} as ContextProps);
 
 export function Provider({ children }: ContextProviderProps) {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("São Paulo");
 
   return (
     <Context.Provider value={{ city, setCity }}>{children}</Context.Provider>
