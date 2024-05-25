@@ -8,8 +8,22 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
-import {FetchDataExample} from "../../component/methods/pets/get";
 import { Context } from "../../Context/Provider";
+import { FetchDataExample } from "../../component/methods/pets/get";
+
+
+interface Pet {
+  name: string,
+  description: string,
+  weight: number,
+  favoriteFood:string,
+  birth: Date,
+}
+
+interface Response {
+  pets: Pet[] | null
+}
+
 
 export function PetsDashBoard() {
   const { Header, Sider, Content } = Layout;
@@ -21,6 +35,10 @@ export function PetsDashBoard() {
   const navigate = useNavigate();
 
   const { city, setCity } = useContext(Context);
+
+  const pets: Response = FetchDataExample({city})
+
+  console.log(pets)
   
   return (
     <Layout>
@@ -76,7 +94,6 @@ export function PetsDashBoard() {
             borderRadius: borderRadiusLG,
           }}
         >
-          <FetchDataExample city={city} />
         </Content>
       </Layout>
     </Layout>

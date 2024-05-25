@@ -4,8 +4,20 @@ interface GetProps{
   city: string
 }
 
+interface Pet {
+  name: string,
+  description: string,
+  weight: number,
+  favoriteFood:string,
+  birth: Date,
+}
+
+interface Response {
+  pets: Pet[] | null
+}
+
 export function FetchDataExample({city}: GetProps) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({Response});
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -21,18 +33,9 @@ export function FetchDataExample({city}: GetProps) {
   }, [city]);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return error;
   }
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <div>
-      <h1>Fetched Data</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
+  return data;
 }
 
