@@ -95,9 +95,17 @@ const useStyles = createUseStyles({
     divFooterCol: {
       display: "flex",
       flexDirection: "row",
-      gap: "4rem",
+      gap: "2rem",
       alignItems: "center   ",
     },
+    searchButtonClass: {
+      height: "60px",
+      width: "55px",
+      background: "#F4D35E",
+      border: "none",
+      borderRadius: "18px",
+      cursor: "pointer",
+    }
   },
 });
 
