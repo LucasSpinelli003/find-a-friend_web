@@ -7,8 +7,10 @@ import { SelectedAcronymStateAndCity } from "../../component/selectedAcronymStat
 import { createUseStyles } from "react-jss";
 import { useNavigate } from "react-router-dom";
 
+
 const useStyles = createUseStyles({
   container: {
+    overflow:"hidden",
     background: "#F15156",
     height: "100vh",
     display: "flex",
@@ -43,6 +45,7 @@ const useStyles = createUseStyles({
     maxWidth: "29vw",
     lineHeight: 1,
   },
+
   footerCol: {
     display: "flex",
     flexDirection: "row",
@@ -72,6 +75,30 @@ const useStyles = createUseStyles({
     borderRadius: "18px",
     cursor: "pointer",
   },
+  '@media (max-width: 1500px)': {
+    row: {
+      display: "flex",
+      flexDirection: "column",
+      width: "80vw",
+      gap: "3rem",
+      height: "77vh",
+    },
+    textMainCol: {
+      color: "#fff",
+      fontSize: "3rem",
+      fontFamily: "Nunito",
+      fontWeight: 800,
+      fontStyle: "extraBold",
+      maxWidth: "29vw",
+      lineHeight: 1,
+    },
+    divFooterCol: {
+      display: "flex",
+      flexDirection: "row",
+      gap: "4rem",
+      alignItems: "center   ",
+    },
+  },
 });
 
 export function Home() {
@@ -88,6 +115,7 @@ export function Home() {
   } = useStyles();
 
   const navigate = useNavigate();
+
   return (
     <section className={container}>
       <Row className={row}>

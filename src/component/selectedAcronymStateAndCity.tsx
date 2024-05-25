@@ -26,7 +26,8 @@ export function SelectedAcronymStateAndCity() {
 
   const onSecondCityChange = (value: CityName) => {
     setSecondCity(value);
-    setCity((state: string) => (state !== value ? value : state));
+    console.log(value);
+    setCity(value);
   };
 
   const selectSelectorStyle = {
@@ -44,6 +45,10 @@ export function SelectedAcronymStateAndCity() {
         style={{
           width: "3.3vw",
           height: "6vh",
+          ...(window.innerWidth <= 1500 && {
+            width: "5.3vw",
+            height: "50px",
+          })
         }}
         onChange={handleProvinceChange}
         className={"anotherCustomSelect"}

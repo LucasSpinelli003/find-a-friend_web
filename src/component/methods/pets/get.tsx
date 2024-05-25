@@ -1,10 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { Context } from "../../../Context/Provider";
+import { useEffect, useState } from "react";
 
-export function FetchDataExample() {
+interface GetProps{
+  city: string
+}
+
+export function FetchDataExample({city}: GetProps) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const { city } = useContext(Context);
 
   useEffect(() => {
     fetch(`http://localhost:3333/pets/city/${city}`)
@@ -34,4 +36,3 @@ export function FetchDataExample() {
   );
 }
 
-export default FetchDataExample;
