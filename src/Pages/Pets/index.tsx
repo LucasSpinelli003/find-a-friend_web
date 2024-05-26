@@ -11,19 +11,18 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context/Provider";
 import { FetchDataExample } from "../../component/methods/pets/get";
 
-
 interface Pet {
-  name: string,
-  description: string,
-  weight: number,
-  favoriteFood:string,
-  birth: Date,
+  id: string;
+  name: string;
+  description: string;
+  weight: number;
+  favoriteFood: string;
+  birth: Date;
 }
 
-interface Response {
-  pets: Pet[] | null
+interface Pets {
+  pets: Pet[] | null;
 }
-
 
 export function PetsDashBoard() {
   const { Header, Sider, Content } = Layout;
@@ -36,10 +35,10 @@ export function PetsDashBoard() {
 
   const { city, setCity } = useContext(Context);
 
-  const pets: Response = FetchDataExample({city})
+  const { pets }: Pets = FetchDataExample({ city });
 
-  console.log(pets)
-  
+  console.log(pets);
+
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -94,6 +93,13 @@ export function PetsDashBoard() {
             borderRadius: borderRadiusLG,
           }}
         >
+          {pets ? (
+            pets.map((pet) => {
+              return <h1 key={pet.id}>{pet.name}</h1>;
+            })
+          ) : (
+            <h1> loading...</h1>
+          )}
         </Content>
       </Layout>
     </Layout>
