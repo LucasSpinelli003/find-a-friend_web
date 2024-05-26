@@ -1,23 +1,36 @@
 import { useEffect, useState } from "react";
 
-interface GetProps{
-  city: string
+interface GetProps {
+  city: string;
 }
 
 interface Pet {
-  name: string,
-  description: string,
-  weight: number,
-  favoriteFood:string,
-  birth: Date,
+  id: string;
+  name: string;
+  description: string;
+  weight: number;
+  favoriteFood: string;
+  birth: Date;
 }
 
-interface Response {
-  pets: Pet[] | null
+interface Pets {
+  pets: Pet[];
 }
 
-export function FetchDataExample({city}: GetProps) {
-  const [data, setData] = useState({Response});
+export function FetchDataExample({ city }: GetProps) {
+  const [data, setData] = useState<Pets>({
+    pets: [
+      {
+        id: "",
+        name: "",
+        birth: new Date(),
+        description: "",
+        favoriteFood: "",
+        weight: 0,
+      },
+    ],
+  });
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -38,4 +51,3 @@ export function FetchDataExample({city}: GetProps) {
 
   return data;
 }
-
