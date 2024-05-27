@@ -10,6 +10,7 @@ import { Button, Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context/Provider";
 import { FetchDataExample } from "../../component/methods/pets/get";
+import { Pets } from "../../component/pets";
 
 interface Pet {
   id: string;
@@ -95,7 +96,13 @@ export function PetsDashBoard() {
         >
           {pets ? (
             pets.map((pet) => {
-              return <h1 key={pet.id}>{pet.name}</h1>;
+              return (
+                <Pets
+                  key={pet.id}
+                  name={pet.name}
+                  favoriteFood={pet.favoriteFood}
+                />
+              );
             })
           ) : (
             <h1> loading...</h1>

@@ -7,10 +7,9 @@ import { SelectedAcronymStateAndCity } from "../../component/selectedAcronymStat
 import { createUseStyles } from "react-jss";
 import { useNavigate } from "react-router-dom";
 
-
 const useStyles = createUseStyles({
   container: {
-    overflow:"hidden",
+    overflow: "hidden",
     background: "#F15156",
     height: "100vh",
     display: "flex",
@@ -75,7 +74,7 @@ const useStyles = createUseStyles({
     borderRadius: "18px",
     cursor: "pointer",
   },
-  '@media (max-width: 1500px)': {
+  "@media (max-width: 1500px)": {
     row: {
       display: "flex",
       flexDirection: "column",
@@ -105,7 +104,7 @@ const useStyles = createUseStyles({
       border: "none",
       borderRadius: "18px",
       cursor: "pointer",
-    }
+    },
   },
 });
 
