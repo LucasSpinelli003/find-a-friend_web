@@ -6,6 +6,8 @@ import { Col, Row, Typography } from "antd";
 import { SelectedAcronymStateAndCity } from "../../component/selectedAcronymStateAndCity";
 import { createUseStyles } from "react-jss";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../../Context/Provider";
 
 const useStyles = createUseStyles({
   container: {
@@ -74,12 +76,12 @@ const useStyles = createUseStyles({
     borderRadius: "18px",
     cursor: "pointer",
   },
-  "@media (max-width: 1500px)": {
+  "@media (max-width: 1800px)": {
     row: {
       display: "flex",
       flexDirection: "column",
       width: "80vw",
-      gap: "3rem",
+      gap: "1rem",
       height: "77vh",
     },
     textMainCol: {
@@ -123,6 +125,8 @@ export function Home() {
 
   const navigate = useNavigate();
 
+  const { setCity, preAlocatedCity } = useContext(Context);
+
   return (
     <section className={container}>
       <Row className={row}>
@@ -150,11 +154,15 @@ export function Home() {
               Busque um amigo:
             </Typography>
             <div>
-              <SelectedAcronymStateAndCity />
+              <SelectedAcronymStateAndCity
+                selectCityConfig="none !important"
+                selectStateConfig="1px solid #fff !important"
+              />
             </div>
             <button
               className={searchButtonClass}
               onClick={() => {
+                setCity(preAlocatedCity);
                 navigate("/pets");
               }}
             >

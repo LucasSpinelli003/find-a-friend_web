@@ -3,6 +3,8 @@ import React, { ReactNode, createContext, useState } from "react";
 interface ContextProps {
   city: string;
   setCity: React.Dispatch<React.SetStateAction<string>>;
+  preAlocatedCity: string;
+  setPreAlocatedCity: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface ContextProviderProps {
@@ -12,9 +14,14 @@ interface ContextProviderProps {
 export const Context = createContext({} as ContextProps);
 
 export function Provider({ children }: ContextProviderProps) {
-  const [city, setCity] = useState("São Paulo");
+  const [city, setCity] = useState("Cidade");
+  const [preAlocatedCity, setPreAlocatedCity] = useState("Cidade");
 
   return (
-    <Context.Provider value={{ city, setCity }}>{children}</Context.Provider>
+    <Context.Provider
+      value={{ city, setCity, preAlocatedCity, setPreAlocatedCity }}
+    >
+      {children}
+    </Context.Provider>
   );
 }

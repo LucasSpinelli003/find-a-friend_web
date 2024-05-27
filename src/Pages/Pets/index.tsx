@@ -1,16 +1,13 @@
-import { useState, useContext } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import { useContext } from "react";
+import { Layout } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context/Provider";
 import { FetchDataExample } from "../../component/methods/pets/get";
 import { Pets } from "../../component/pets";
+import petLogo from "../../assets/img/Group 134 (1).png";
+import { SelectedAcronymStateAndCity } from "../../component/selectedAcronymStateAndCity";
+import searchButton from "../../assets/img/Group 20.png";
+import { createUseStyles } from "react-jss";
 
 interface Pet {
   id: string;
@@ -25,88 +22,140 @@ interface Pets {
   pets: Pet[] | null;
 }
 
+const useStyles = createUseStyles({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    background: "#E44449",
+    width: "25vw",
+    height: "30vh",
+    alignItems: "center",
+  },
+  backContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "3rem",
+    margin: "0 0 0 2rem",
+  },
+  logoImage: {
+    height: "3rem",
+    cursor: "pointer",
+  },
+  searchButtonStyle: {
+    height: "60px",
+    width: "60px",
+    background: "#F4D35E",
+    border: "none",
+    borderRadius: "18px",
+    cursor: "pointer",
+  },
+  contentStyle: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6rem",
+    margin: "10rem 0 0 3rem",
+    minHeight: "100vh",
+    overflow: "hidden",
+    background: "#FDECED",
+  },
+  petsCount: {
+    color: "#0D3B66",
+    fontWeight: "400",
+    fontSize: "23px",
+    fontFamily: "Nunito",
+  },
+  petsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    gap: "2rem",
+    flexWrap: "wrap",
+  },
+});
+
 export function PetsDashBoard() {
-  const { Header, Sider, Content } = Layout;
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const { Sider, Content } = Layout;
 
   const navigate = useNavigate();
 
-  const { city, setCity } = useContext(Context);
+  const { city, setCity, preAlocatedCity, setPreAlocatedCity } =
+    useContext(Context);
 
   const { pets }: Pets = FetchDataExample({ city });
 
-  console.log(pets);
+  const {
+    container,
+    backContainer,
+    logoImage,
+    searchButtonStyle,
+    contentStyle,
+    petsCount,
+    petsContainer,
+  } = useStyles();
 
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "back",
-              onClick: () => {
-                setCity("São Paulo");
-                navigate("/");
-              },
-            },
-          ]}
-        />
+      <Sider
+        width={"25vw"}
+        style={{
+          background: "#F15156",
+          display: "block",
+        }}
+      >
+        <section className={container}>
+          <div className={backContainer}>
+            <div>
+              <img
+                className={logoImage}
+                src={petLogo}
+                alt=""
+                onClick={() => {
+                  setPreAlocatedCity("");
+                  setCity("");
+                  navigate("/");
+                }}
+              />
+            </div>
+
+            <div style={{ display: "flex" }}>
+              <SelectedAcronymStateAndCity
+                selectStateConfig="1px solid #F15156 !important"
+                selectCityConfig="1px solid #F15156 !important"
+              />
+              <button
+                className={searchButtonStyle}
+                onClick={() => {
+                  setCity(preAlocatedCity);
+                }}
+              >
+                <img src={searchButton} alt="" />
+              </button>
+            </div>
+          </div>
+        </section>
       </Sider>
-      <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: "100vh",
-            overflow: "hidden",
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          {pets ? (
-            pets.map((pet) => {
-              return (
-                <Pets
-                  key={pet.id}
-                  name={pet.name}
-                  favoriteFood={pet.favoriteFood}
-                />
-              );
-            })
-          ) : (
-            <h1> loading...</h1>
-          )}
+      <Layout style={{ background: "#FDECED" }}>
+        <Content className={contentStyle}>
+          <h1 className={petsCount}>
+            Encontre{" "}
+            <span style={{ fontWeight: "800" }}>{pets.length} aumigos</span> na{" "}
+            sua cidade
+          </h1>
+          <div className={petsContainer}>
+            {pets ? (
+              pets.map((pet) => {
+                return (
+                  <Pets
+                    key={pet.id}
+                    name={pet.name}
+                    favoriteFood={pet.favoriteFood}
+                  />
+                );
+              })
+            ) : (
+              <h1> loading...</h1>
+            )}
+          </div>
         </Content>
       </Layout>
     </Layout>

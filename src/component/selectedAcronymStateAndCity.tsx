@@ -2,10 +2,17 @@ import { useContext, useState } from "react";
 import { Select, Space } from "antd";
 import { Context } from "../Context/Provider";
 
-export function SelectedAcronymStateAndCity() {
+interface SelectProps {
+  selectStateConfig?: string;
+  selectCityConfig?: string;
+}
+export function SelectedAcronymStateAndCity({
+  selectCityConfig,
+  selectStateConfig,
+}: SelectProps) {
   const cityData = {
-    SP: ["São Paulo", "Guarulhos", "Peruíbe"],
-    RJ: ["Rio de Janeiro", "Niteroi", "Bangu"],
+    SP: ["Cidade", "São Paulo", "Guarulhos", "Peruíbe"],
+    RJ: ["Cidade", "Rio de Janeiro", "Niteroi", "Bangu"],
   };
 
   type CityName = keyof typeof cityData;
@@ -22,12 +29,11 @@ export function SelectedAcronymStateAndCity() {
     setSecondCity(cityData[value][0] as CityName);
   };
 
-  const { setCity } = useContext(Context);
+  const { setPreAlocatedCity } = useContext(Context);
 
   const onSecondCityChange = (value: CityName) => {
     setSecondCity(value);
-    console.log(value);
-    setCity(value);
+    setPreAlocatedCity(value);
   };
 
   const selectSelectorStyle = {
@@ -43,10 +49,10 @@ export function SelectedAcronymStateAndCity() {
       <Select
         defaultValue={provinceData[0]}
         style={{
-          width: "3.3vw",
+          width: "4vw",
           height: "6vh",
-          ...(window.innerWidth <= 1500 && {
-            width: "5.3vw",
+          ...(window.innerWidth <= 1800 && {
+            width: "67px",
             height: "50px",
           }),
         }}
@@ -70,20 +76,9 @@ export function SelectedAcronymStateAndCity() {
             border-radius: 18px !important;
             
             font-size: 2rem !important ;
-            border: none !important;
-            boxShadow: none !important;
-
-            :hover{
-            border: none !important;
-            boxShadow: none !important;            
-            }
-            :active{
-                border: none !important;
-                boxShadow: "none" !important;
-            }
         }
         .anotherCustomSelect{
-            border: 0.1px solid #fff;
+            border: ${selectStateConfig};
             border-radius: 18px;
         }
         .ant-select-selection-item{
@@ -100,9 +95,7 @@ export function SelectedAcronymStateAndCity() {
           align-items: center !important;
           font-family: Nunito !important;
           font-weight: 800 !important;
-          border: none !important;
-            
-              
+          border: ${selectCityConfig};      
         }
       `}</style>
     </Space>
