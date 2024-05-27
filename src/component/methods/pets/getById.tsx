@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 interface GetProps {
-  city: string;
+  id: string;
 }
 
 interface Pet {
@@ -13,28 +13,20 @@ interface Pet {
   birth: Date;
 }
 
-interface Pets {
-  pets: Pet[];
-}
-
-export function GetAll({ city }: GetProps) {
-  const [data, setData] = useState<Pets>({
-    pets: [
-      {
-        id: "",
-        name: "",
-        birth: new Date(),
-        description: "",
-        favoriteFood: "",
-        weight: 0,
-      },
-    ],
+export function GetById({ id }: GetProps) {
+  const [data, setData] = useState<Pet>({
+    id: "",
+    name: "",
+    birth: new Date(),
+    description: "",
+    favoriteFood: "",
+    weight: 0,
   });
 
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3333/pets/city/${city}`)
+    fetch(`http://localhost:3333/pets/city/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -43,7 +35,7 @@ export function GetAll({ city }: GetProps) {
       })
       .then((data) => setData(data))
       .catch((error) => setError(error));
-  }, [city]);
+  }, [id]);
 
   if (error) {
     return error;

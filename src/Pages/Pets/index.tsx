@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Layout } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../Context/Provider";
-import { FetchDataExample } from "../../component/methods/pets/get";
+import { GetAll } from "../../component/methods/pets/get";
 import { Pets } from "../../component/pets";
 import petLogo from "../../assets/img/Group 134 (1).png";
 import { SelectedAcronymStateAndCity } from "../../component/selectedAcronymStateAndCity";
@@ -78,10 +78,10 @@ export function PetsDashBoard() {
 
   const navigate = useNavigate();
 
-  const { city, setCity, preAlocatedCity, setPreAlocatedCity } =
+  const { city, setCity, preAlocatedCity, setPreAlocatedCity, setActualId } =
     useContext(Context);
 
-  const { pets }: Pets = FetchDataExample({ city });
+  const { pets }: Pets = GetAll({ city });
 
   const {
     container,
@@ -149,6 +149,9 @@ export function PetsDashBoard() {
                     key={pet.id}
                     name={pet.name}
                     favoriteFood={pet.favoriteFood}
+                    onClick={() => {
+                      navigate("/pet");
+                    }}
                   />
                 );
               })

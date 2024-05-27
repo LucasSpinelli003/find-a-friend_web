@@ -1,9 +1,9 @@
 import { createUseStyles } from "react-jss";
 import logo from "../assets/img/Group 18.png";
 import littleDog from "../assets/img/charlesdeluvio-Mv9hjnEUHR4-unsplash.jpg";
+import { ImgHTMLAttributes } from "react";
 
-interface Pet {
-  id?: string;
+interface Pet extends ImgHTMLAttributes<HTMLImageElement> {
   name: string;
   description?: string;
   weight?: number;
@@ -57,11 +57,17 @@ const useStyles = createUseStyles({
   },
 });
 
-export function Pets({ name, favoriteFood }: Pet) {
+export function Pets({ name, favoriteFood, ...props }: Pet) {
   const { avatar, profile, cover, sidebar } = useStyles();
   return (
     <aside className={sidebar}>
-      <img className={cover} src={littleDog} alt="" />
+      <img
+        className={cover}
+        src={littleDog}
+        alt=""
+        {...props}
+        style={{ cursor: "pointer" }}
+      />
       <div className={profile}>
         <div className={avatar}>
           <img src={logo} alt="" />
