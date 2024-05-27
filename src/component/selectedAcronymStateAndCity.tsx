@@ -48,7 +48,7 @@ export function SelectedAcronymStateAndCity() {
           ...(window.innerWidth <= 1500 && {
             width: "5.3vw",
             height: "50px",
-          })
+          }),
         }}
         onChange={handleProvinceChange}
         className={"anotherCustomSelect"}
