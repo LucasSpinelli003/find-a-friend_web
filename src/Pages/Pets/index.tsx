@@ -8,6 +8,7 @@ import petLogo from "../../assets/img/Group 134 (1).png";
 import { SelectedAcronymStateAndCity } from "../../component/selectedAcronymStateAndCity";
 import searchButton from "../../assets/img/Group 20.png";
 import { createUseStyles } from "react-jss";
+import { PetModal } from "../Pet/modal";
 
 interface Pet {
   id: string;
@@ -78,8 +79,14 @@ export function PetsDashBoard() {
 
   const navigate = useNavigate();
 
-  const { city, setCity, preAlocatedCity, setPreAlocatedCity, setActualId } =
-    useContext(Context);
+  const {
+    city,
+    setCity,
+    preAlocatedCity,
+    setPreAlocatedCity,
+    setActualId,
+    setIsModalOpen,
+  } = useContext(Context);
 
   const { pets }: Pets = GetAll({ city });
 
@@ -150,7 +157,8 @@ export function PetsDashBoard() {
                     name={pet.name}
                     favoriteFood={pet.favoriteFood}
                     onClick={() => {
-                      navigate("/pet");
+                      setActualId(pet.id);
+                      setIsModalOpen(true);
                     }}
                   />
                 );
@@ -158,6 +166,7 @@ export function PetsDashBoard() {
             ) : (
               <h1> loading...</h1>
             )}
+            <PetModal />
           </div>
         </Content>
       </Layout>

@@ -7,6 +7,8 @@ interface ContextProps {
   setPreAlocatedCity: React.Dispatch<React.SetStateAction<string>>;
   actualId: string;
   setActualId: React.Dispatch<React.SetStateAction<string>>;
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ContextProviderProps {
@@ -19,6 +21,7 @@ export function Provider({ children }: ContextProviderProps) {
   const [city, setCity] = useState("Cidade");
   const [preAlocatedCity, setPreAlocatedCity] = useState("Cidade");
   const [actualId, setActualId] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <Context.Provider
@@ -29,6 +32,8 @@ export function Provider({ children }: ContextProviderProps) {
         setPreAlocatedCity,
         actualId,
         setActualId,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}
