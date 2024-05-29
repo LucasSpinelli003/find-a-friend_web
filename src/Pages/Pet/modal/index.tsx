@@ -9,6 +9,7 @@ import petPhoto3 from "../../../assets/img/dogs/karsten-winegeart-88lDyjdIDGw-un
 import petPhoto4 from "../../../assets/img/dogs/karsten-winegeart-BJaqPaH6AGQ-unsplash.jpg";
 import petPhoto5 from "../../../assets/img/dogs/karsten-winegeart-WaMMo0it6Vg-unsplash.jpg";
 import petPhoto6 from "../../../assets/img/dogs/karsten-winegeart-oU6KZTXhuvk-unsplash.jpg";
+import { RatePetEnergy } from "../../../component/rateEnergyPet";
 
 const useStyle = createUseStyles({
   petPhotoStyle: {
@@ -38,6 +39,14 @@ const useStyle = createUseStyles({
       color: "#0D3B66",
     },
   },
+  selectedImage: {
+    width: "80px",
+    height: "80px",
+    borderRadius: "15px",
+    cursor: "pointer",
+    objectFit: "cover",
+    opacity: "0.5",
+  },
 });
 
 export function PetModal() {
@@ -52,8 +61,19 @@ export function PetModal() {
   };
 
   const { pet } = GetById({ actualId });
-  const { petPhotoStyle, headers } = useStyle();
+  const { petPhotoStyle, headers, selectedImage } = useStyle();
   const [selectedPicture, setSelectedPicture] = useState(petPhoto);
+  const imagePet = [
+    petPhoto,
+    petPhoto2,
+    petPhoto3,
+    petPhoto4,
+    petPhoto5,
+    petPhoto6,
+  ];
+
+  console.log("🚀 ~ PetModal ~ selectedPicture:", selectedPicture);
+  console.log("----->", imagePet);
 
   return (
     <>
@@ -68,90 +88,24 @@ export function PetModal() {
             justifyContent: "center",
           }}
         >
-          <img
-            style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "15px",
-              objectFit: "cover",
-              cursor: "pointer",
-            }}
-            src={petPhoto}
-            alt=""
-            onClick={() => {
-              setSelectedPicture(petPhoto);
-            }}
-          />
-          <img
-            style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "15px",
-              cursor: "pointer",
-              objectFit: "cover",
-            }}
-            src={petPhoto2}
-            alt=""
-            onClick={() => {
-              setSelectedPicture(petPhoto2);
-            }}
-          />
-          <img
-            style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "15px",
-              objectFit: "cover",
-              cursor: "pointer",
-            }}
-            src={petPhoto3}
-            alt=""
-            onClick={() => {
-              setSelectedPicture(petPhoto3);
-            }}
-          />
-          <img
-            style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "15px",
-              objectFit: "cover",
-              cursor: "pointer",
-            }}
-            src={petPhoto4}
-            alt=""
-            onClick={() => {
-              setSelectedPicture(petPhoto4);
-            }}
-          />
-          <img
-            style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "15px",
-              objectFit: "cover",
-              cursor: "pointer",
-            }}
-            src={petPhoto5}
-            alt=""
-            onClick={() => {
-              setSelectedPicture(petPhoto5);
-            }}
-          />
-          <img
-            style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "15px",
-              objectFit: "cover",
-              cursor: "pointer",
-            }}
-            src={petPhoto6}
-            alt=""
-            onClick={() => {
-              setSelectedPicture(petPhoto6);
-            }}
-          />
+          {imagePet.map((image, index) => {
+            return (
+              <img
+                className={selectedImage}
+                src={image}
+                alt=""
+                style={{
+                  opacity: image === selectedPicture ? 1 : 0.3,
+                  border:
+                    image === selectedPicture ? "5px solid #0D3B66" : "none",
+                }}
+                onClick={() => {
+                  setSelectedPicture(image);
+                }}
+                key={index}
+              />
+            );
+          })}
         </div>
         <div className={headers}>
           <h1
@@ -176,6 +130,9 @@ export function PetModal() {
           >
             {pet.description}
           </h2>
+        </div>
+        <div>
+          <RatePetEnergy energyLevel={3} />
         </div>
       </Modal>
       <style>{`
