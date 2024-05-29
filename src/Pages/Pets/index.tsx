@@ -145,7 +145,7 @@ export function PetsDashBoard() {
         <Content className={contentStyle}>
           <h1 className={petsCount}>
             Encontre{" "}
-            <span style={{ fontWeight: "800" }}>{pets.length} aumigos</span> na{" "}
+            <span style={{ fontWeight: "800" }}>{pets.length} amigos</span> na{" "}
             sua cidade
           </h1>
           <div className={petsContainer}>
@@ -166,6 +166,8 @@ export function PetsDashBoard() {
             ) : (
               <h1> loading...</h1>
             )}
+          </div>
+          <div>
             <PetModal />
           </div>
         </Content>
