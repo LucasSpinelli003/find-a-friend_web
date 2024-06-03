@@ -1,6 +1,9 @@
 import energy from "../assets/img/Vector.png";
 import selectedEnergy from "../assets/img/Vector (1).png";
+import { EnegyLevelStats } from "./energyLevelStats";
 
+export const unselectedEnergy = energy;
+export const usedEnergy = selectedEnergy;
 interface EnergyLevelProps {
   energyLevel: number;
 }
@@ -20,33 +23,15 @@ export function RatePetEnergy({ energyLevel }: EnergyLevelProps) {
         flexDirection: "column",
         width: "174px",
         height: "106px",
-        borderRadius: "20px",
-        alignItems: "center",
         justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "20px",
+        border: "1px solid #000",
+        margin: "0 0 0 8rem",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          border: "1px solid #000",
-          gap: "0.5rem",
-          margin: "10rem 0",
-        }}
-      >
-        {desc.map((item, index) => {
-          return (
-            <img
-              src={index + 1 <= energyLevel ? selectedEnergy : energy}
-              alt={item}
-              key={index}
-            />
-          );
-        })}
-      </div>
-      <div>
-        <h1>{desc[energyLevel - 1]}</h1>
-      </div>
+      <EnegyLevelStats desc={desc} energyLevel={energyLevel} />
+      <h1 style={{ marginBottom: "2rem" }}>{desc[energyLevel - 1]}</h1>
     </section>
   );
 }
