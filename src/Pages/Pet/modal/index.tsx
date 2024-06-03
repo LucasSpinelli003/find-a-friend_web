@@ -23,22 +23,6 @@ const useStyle = createUseStyles({
     fontFamily: "Nunito",
     fontWeight: "800",
   },
-  headers: {
-    h1: {
-      margin: "4rem 0 0 8rem",
-      fontFamily: "Nunito",
-      fontWeight: "800",
-      fontSize: "54px",
-      color: "#0D3B66",
-    },
-    h2: {
-      margin: "4rem 0 0 8rem",
-      fontFamily: "Nunito",
-      fontWeight: "400px",
-      fontSize: "22px",
-      color: "#0D3B66",
-    },
-  },
   selectedImage: {
     width: "80px",
     height: "80px",
@@ -61,7 +45,7 @@ export function PetModal() {
   };
 
   const { pet } = GetById({ actualId });
-  const { petPhotoStyle, headers, selectedImage } = useStyle();
+  const { petPhotoStyle, selectedImage } = useStyle();
   const [selectedPicture, setSelectedPicture] = useState(petPhoto);
   const imagePet = [
     petPhoto,
@@ -71,9 +55,6 @@ export function PetModal() {
     petPhoto5,
     petPhoto6,
   ];
-
-  console.log("🚀 ~ PetModal ~ selectedPicture:", selectedPicture);
-  console.log("----->", imagePet);
 
   return (
     <>
@@ -107,10 +88,10 @@ export function PetModal() {
             );
           })}
         </div>
-        <div className={headers}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
           <h1
             style={{
-              margin: "4rem 0 0 8rem",
+              margin: "0 0 0 8rem",
               fontFamily: "Nunito",
               fontWeight: "800",
               fontSize: "54px",
@@ -121,7 +102,7 @@ export function PetModal() {
           </h1>
           <h2
             style={{
-              margin: "4rem 0 0 8rem",
+              margin: "0 0 0 8rem",
               fontFamily: "Nunito",
               fontWeight: "400px",
               fontSize: "22px",
@@ -130,9 +111,9 @@ export function PetModal() {
           >
             {pet.description}
           </h2>
-        </div>
-        <div>
-          <RatePetEnergy energyLevel={3} />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <RatePetEnergy energyLevel={3} />
+          </div>
         </div>
       </Modal>
       <style>{`
