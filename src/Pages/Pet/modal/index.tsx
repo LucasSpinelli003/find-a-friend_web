@@ -10,6 +10,7 @@ import petPhoto4 from "../../../assets/img/dogs/karsten-winegeart-BJaqPaH6AGQ-un
 import petPhoto5 from "../../../assets/img/dogs/karsten-winegeart-WaMMo0it6Vg-unsplash.jpg";
 import petPhoto6 from "../../../assets/img/dogs/karsten-winegeart-oU6KZTXhuvk-unsplash.jpg";
 import { RatePetEnergy } from "../../../component/rateEnergyPet";
+import { PetSpace } from "../../../component/petSpace";
 
 const useStyle = createUseStyles({
   petPhotoStyle: {
@@ -67,6 +68,7 @@ export function PetModal() {
             gap: "2rem",
             alignItems: "center",
             justifyContent: "center",
+            marginTop: "3.5rem",
           }}
         >
           {imagePet.map((image, index) => {
@@ -111,8 +113,16 @@ export function PetModal() {
           >
             {pet.description}
           </h2>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "2rem",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
             <RatePetEnergy energyLevel={3} />
+            <PetSpace />
           </div>
         </div>
       </Modal>
@@ -125,13 +135,6 @@ export function PetModal() {
       min-height: 200vh !important;
       border-radius: 50px!important;
      }
-     .ant-modal-body{
-      div{
-        margin: 2rem 0 !important;
-      }
-  
-     }
-     
       `}</style>
     </>
   );
