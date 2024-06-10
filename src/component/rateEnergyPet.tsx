@@ -22,8 +22,9 @@ export function RatePetEnergy({ energyLevel }: EnergyLevelProps) {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "20px",
-        border: "1px solid #000",
+        border: "2px solid #afaeae99",
         margin: "0 0 0 8rem",
+        gap: "0.5rem",
       }}
     >
       <div
@@ -45,7 +46,9 @@ export function RatePetEnergy({ energyLevel }: EnergyLevelProps) {
           );
         })}
       </div>
-      <h1>{desc[energyLevel - 1]}</h1>
+      <h1 style={{ fontSize: "18px", fontFamily: "Nunito", color: "#0D3B66" }}>
+        {desc[energyLevel - 1]}
+      </h1>
     </section>
   );
 }

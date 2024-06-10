@@ -73,7 +73,7 @@ export function Pets({ name, favoriteFood, ...props }: Pet) {
           <img src={logo} alt="" />
         </div>
 
-        <strong>{name}</strong>
+        <strong style={{ color: "#fff" }}>{name}</strong>
         <span>{favoriteFood}</span>
       </div>
     </aside>

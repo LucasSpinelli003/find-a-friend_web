@@ -1,6 +1,15 @@
 import spaceAvatar from "./../assets/img/Group 57.png";
 
-export function PetSpace() {
+interface Pet {
+  id?: string;
+  name?: string;
+  description?: string;
+  weight?: number;
+  fv_food?: string;
+  birth?: Date;
+}
+
+export function PetSpace({ fv_food }: Pet) {
   return (
     <section
       style={{
@@ -8,7 +17,7 @@ export function PetSpace() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        border: "1px solid #000",
+        border: "2px solid #afaeae99",
         width: "174px",
         height: "106px",
         borderRadius: "20px",
@@ -16,13 +25,17 @@ export function PetSpace() {
     >
       <div
         style={{
-          marginRight: "6   rem",
+          marginRight: "6rem",
         }}
       >
         <img src={spaceAvatar} alt="" />
       </div>
       <div>
-        <h1>Ambiente Amplo</h1>
+        <h1
+          style={{ fontSize: "18px", fontFamily: "Nunito", color: "#0D3B66" }}
+        >
+          {fv_food}
+        </h1>
       </div>
     </section>
   );
