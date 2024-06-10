@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Modal } from "antd";
 import { Context } from "../../../Context/Provider";
 import { createUseStyles } from "react-jss";
-import { GetById } from "../../../component/methods/pets/getById";
+import { GetById } from "../../../component/requests/pets/getById";
 import petPhoto from "../../../assets/img/dogs/Foto.png";
 import petPhoto2 from "../../../assets/img/dogs/karsten-winegeart-5PVXkqt2s9k-unsplash.jpg";
 import petPhoto3 from "../../../assets/img/dogs/karsten-winegeart-88lDyjdIDGw-unsplash.jpg";
@@ -11,6 +11,7 @@ import petPhoto5 from "../../../assets/img/dogs/karsten-winegeart-WaMMo0it6Vg-un
 import petPhoto6 from "../../../assets/img/dogs/karsten-winegeart-oU6KZTXhuvk-unsplash.jpg";
 import { RatePetEnergy } from "../../../component/rateEnergyPet";
 import { PetSpace } from "../../../component/petSpace";
+import { PetWeigth } from "../../../component/petWeigth";
 
 const useStyle = createUseStyles({
   petPhotoStyle: {
@@ -56,6 +57,8 @@ export function PetModal() {
     petPhoto5,
     petPhoto6,
   ];
+
+  const cep = FindByCep();
 
   return (
     <>
@@ -122,7 +125,47 @@ export function PetModal() {
             }}
           >
             <RatePetEnergy energyLevel={3} />
-            <PetSpace />
+            <PetSpace fv_food={pet.fv_food} />
+            <PetWeigth weight={pet.weight} />
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "6rem",
+          }}
+        >
+          <div
+            style={{
+              width: "561px",
+              height: "291px",
+              borderBottom: "5rem solid #0D3B66",
+              borderRadius: "20px",
+              alignItems: "center",
+            }}
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14620.55166052099!2d-46.031632000000004!3d-13.54731945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1718052875001!5m2!1spt-BR!2sbr"
+              width="561"
+              height="230"
+              style={{
+                border: 0,
+                borderRadius: "30px",
+              }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <h1
+              style={{
+                margin: "0.5rem 0 0 10rem",
+                color: "#F4D35E",
+                fontSize: "18px",
+              }}
+            >
+              Ver rotas no Google Maps
+            </h1>
           </div>
         </div>
       </Modal>
