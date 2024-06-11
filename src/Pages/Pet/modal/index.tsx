@@ -12,6 +12,10 @@ import petPhoto6 from "../../../assets/img/dogs/karsten-winegeart-oU6KZTXhuvk-un
 import { RatePetEnergy } from "../../../component/rateEnergyPet";
 import { PetSpace } from "../../../component/petSpace";
 import { PetWeigth } from "../../../component/petWeigth";
+import {
+  FindByCep,
+  SearchByCep,
+} from "../../../component/requests/pets/findByCep";
 
 const useStyle = createUseStyles({
   petPhotoStyle: {
@@ -38,6 +42,9 @@ const useStyle = createUseStyles({
 export function PetModal() {
   const { isModalOpen, setIsModalOpen, actualId } = useContext(Context);
 
+  const searchByCep: SearchByCep | undefined = FindByCep({ cep: "03081003" });
+  console.log("lat", searchByCep?.lat, "long", searchByCep?.lng);
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -57,8 +64,6 @@ export function PetModal() {
     petPhoto5,
     petPhoto6,
   ];
-
-  const cep = FindByCep();
 
   return (
     <>
@@ -147,7 +152,7 @@ export function PetModal() {
             }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14620.55166052099!2d-46.031632000000004!3d-13.54731945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1718052875001!5m2!1spt-BR!2sbr"
+              src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14620.55166052099!2d${searchByCep?.lat}!3d${searchByCep?.lng}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1718052875001!5m2!1spt-BR!2sbr`}
               width="561"
               height="230"
               style={{

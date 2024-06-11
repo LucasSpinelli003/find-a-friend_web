@@ -1,38 +1,20 @@
 import { useEffect, useState } from "react";
 
-interface Cidade {
-  ibge: string;
-  nome: string;
-  ddd: string;
+export interface SearchByCep {
+  lat: string;
+  lng: string;
 }
-
-interface Estado {
-  sigla: string;
-}
-
-interface SearchByCep {
-  cidade: Cidade;
-  estado: Estado;
-  altitude: string;
-  longitude: string;
-  bairro: string;
-  complemento: string;
+interface Cep {
   cep: string;
-  logradouro: string;
-  latitude: string;
 }
 
-export function FindByCep() {
+export function FindByCep({ cep }: Cep) {
   const [data, setData] = useState<SearchByCep>();
 
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://www.cepaberto.com/api/v3/cep?cep=01001000`, {
-      headers: {
-        Authorization: "Bearer 12992211",
-      },
-    })
+    fetch(`https://cep.awesomeapi.com.br/json/${cep}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -41,7 +23,7 @@ export function FindByCep() {
       })
       .then((data) => setData(data))
       .catch((error) => setError(error));
-  });
+  }, [cep]);
 
   if (error) {
     return error;
