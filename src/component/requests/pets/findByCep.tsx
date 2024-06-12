@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 
 export interface SearchByCep {
-  lat: string;
-  lng: string;
-}
-interface Cep {
+  lat?: string;
+  lng?: string;
   cep: string;
+  address_type?: string;
+  address_name?: string;
+  address?: string;
+  neighborhood?: string;
+  city?: string;
+  state?: string;
+  ddd?: string;
+  city_ibge?: string;
 }
 
-export function FindByCep({ cep }: Cep) {
+export function FindByCep({ cep }: SearchByCep) {
   const [data, setData] = useState<SearchByCep>();
 
   const [error, setError] = useState(null);
