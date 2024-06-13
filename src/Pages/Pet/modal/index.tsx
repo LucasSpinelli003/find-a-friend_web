@@ -17,6 +17,7 @@ import {
   SearchByCep,
 } from "../../../component/requests/pets/findByCep";
 import { SimpleMap } from "../../../component/petMapLocation";
+import { FindByOrganizationId } from "../../../component/requests/organization/findById";
 
 const useStyle = createUseStyles({
   petPhotoStyle: {
@@ -44,18 +45,6 @@ export function PetModal() {
   const { isModalOpen, setIsModalOpen, actualId } = useContext(Context);
 
   const searchByCep: SearchByCep | undefined = FindByCep({ cep: "03081003" });
-  console.log(
-    "lat:",
-    searchByCep?.lat,
-    "long:",
-    searchByCep?.lng,
-    searchByCep?.address,
-    searchByCep?.address_name,
-    searchByCep?.address_type,
-    searchByCep?.city_ibge,
-    searchByCep?.neighborhood,
-  );
-
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -65,6 +54,9 @@ export function PetModal() {
   };
 
   const { pet } = GetById({ actualId });
+  const organizationId = pet.organizationId;
+  const { organization } = FindByOrganizationId({ organizationId });
+  console.log(organization);
   const { petPhotoStyle, selectedImage } = useStyle();
   const [selectedPicture, setSelectedPicture] = useState(petPhoto);
   const imagePet = [
@@ -182,12 +174,32 @@ export function PetModal() {
             >
               Ver rotas no Google Maps
             </h1> */}
-            <SimpleMap
-              lat={searchByCep?.lat}
-              lng={searchByCep?.lng}
-              key={searchByCep?.lat}
-            />
+            <div style={{ borderRadius: "20px" }}>
+              <SimpleMap
+                lat={searchByCep?.lat}
+                lng={searchByCep?.lng}
+                key={searchByCep?.lat}
+              />
+            </div>
+            <h1
+              style={{
+                margin: "0.7rem 0 0 11rem",
+                color: "#F4D35E",
+                fontSize: "18px",
+              }}
+            >
+              Ver rotas no Google Maps
+            </h1>
           </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <h1
+            style={{
+              margin: "5rem",
+              border: "0.5px solid #D3E2E5",
+              width: "100vw",
+            }}
+          ></h1>
         </div>
       </Modal>
       <style>{`

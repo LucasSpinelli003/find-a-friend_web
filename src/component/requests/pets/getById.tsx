@@ -11,6 +11,7 @@ interface Pet {
   weight: number;
   fv_food: string;
   birth: Date;
+  organizationId: string;
 }
 
 interface PetResponse {
@@ -26,6 +27,7 @@ export function GetById({ actualId }: GetByPetIdProps) {
       description: "",
       fv_food: "",
       weight: 0,
+      organizationId: "",
     },
   });
 
