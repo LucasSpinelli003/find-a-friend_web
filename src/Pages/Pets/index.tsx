@@ -145,8 +145,10 @@ export function PetsDashBoard() {
         <Content className={contentStyle}>
           <h1 className={petsCount}>
             Encontre{" "}
-            <span style={{ fontWeight: "800" }}>{pets.length} amigos</span> na{" "}
-            sua cidade
+            <span style={{ fontWeight: "800" }}>
+              {pets ? pets.length : 0} amigos
+            </span>{" "}
+            na sua cidade
           </h1>
           <div className={petsContainer}>
             {pets ? (
@@ -164,7 +166,7 @@ export function PetsDashBoard() {
                 );
               })
             ) : (
-              <h1> loading...</h1>
+              <h1> </h1>
             )}
           </div>
           <div>
