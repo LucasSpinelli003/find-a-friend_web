@@ -1,34 +1,31 @@
-import GoogleMapReact from "google-map-react";
-import { MapPin } from "phosphor-react";
-
 interface test {
   lat: string | undefined;
   lng: string | undefined;
 }
 
 export function SimpleMap({ lat, lng }: test) {
-  const defaultProps = {
-    center: {
-      lat: Number(lat),
-      lng: Number(lng),
-    },
-    zoom: 17,
-  };
-
   return (
-    // Important! Always set the container height explicitly
-    <div style={{ height: "230px", width: "561px", borderRadius: "20px" }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "" }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+    <>
+      <iframe
+        src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14620.55166052099!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1718052875001!5m2!1spt-BR!2sbr`}
+        width="561"
+        height="230"
+        style={{
+          border: 0,
+          borderRadius: "30px",
+        }}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <h1
+        style={{
+          margin: "0.5rem 0 0 10rem",
+          color: "#F4D35E",
+          fontSize: "18px",
+        }}
       >
-        <div>
-          <h1>
-            <MapPin size={40} />
-          </h1>
-        </div>
-      </GoogleMapReact>
-    </div>
+        Ver rotas no Google Maps
+      </h1>
+    </>
   );
 }

@@ -22,7 +22,7 @@ export function RatePetEnergy({ energyLevel }: EnergyLevelProps) {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "20px",
-        border: "2px solid #afaeae99",
+        border: "3px solid #e6d7d777",
         margin: "0 0 0 8rem",
         gap: "0.5rem",
       }}

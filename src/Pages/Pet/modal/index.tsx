@@ -12,12 +12,15 @@ import petPhoto6 from "../../../assets/img/dogs/karsten-winegeart-oU6KZTXhuvk-un
 import { RatePetEnergy } from "../../../component/rateEnergyPet";
 import { PetSpace } from "../../../component/petSpace";
 import { PetWeigth } from "../../../component/petWeigth";
+import companyLogo from "../../../assets/img/Group 94.png";
+import wpp from "../../../assets/img/Vector (2).png";
 import {
   FindByCep,
   SearchByCep,
 } from "../../../component/requests/pets/findByCep";
 import { SimpleMap } from "../../../component/petMapLocation";
 import { FindByOrganizationId } from "../../../component/requests/organization/findById";
+import { ScreenLine } from "../../../component/ScreenLine";
 
 const useStyle = createUseStyles({
   petPhotoStyle: {
@@ -59,6 +62,12 @@ export function PetModal() {
   console.log(organization);
   const { petPhotoStyle, selectedImage } = useStyle();
   const [selectedPicture, setSelectedPicture] = useState(petPhoto);
+  const petRule = [
+    "Local grande",
+    "Proibido apartamento",
+    "Ambiente frio",
+    "Cão com intolerância a lactose",
+  ];
   const imagePet = [
     petPhoto,
     petPhoto2,
@@ -154,52 +163,129 @@ export function PetModal() {
               alignItems: "center",
             }}
           >
-            {/* <iframe
-              src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14620.55166052099!2d${searchByCep?.lat}!3d${searchByCep?.lng}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1718052875001!5m2!1spt-BR!2sbr`}
-              width="561"
-              height="230"
-              style={{
-                border: 0,
-                borderRadius: "30px",
-              }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-            <h1
-              style={{
-                margin: "0.5rem 0 0 10rem",
-                color: "#F4D35E",
-                fontSize: "18px",
-              }}
-            >
-              Ver rotas no Google Maps
-            </h1> */}
-            <div style={{ borderRadius: "20px" }}>
-              <SimpleMap
-                lat={searchByCep?.lat}
-                lng={searchByCep?.lng}
-                key={searchByCep?.lat}
-              />
-            </div>
-            <h1
-              style={{
-                margin: "0.7rem 0 0 11rem",
-                color: "#F4D35E",
-                fontSize: "18px",
-              }}
-            >
-              Ver rotas no Google Maps
-            </h1>
+            <SimpleMap
+              lat={searchByCep?.lat}
+              lng={searchByCep?.lng}
+              key={searchByCep?.lat}
+            />
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <ScreenLine />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: "1rem",
+            }}
+          >
+            <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+              <img src={companyLogo} alt="" />
+              <div>
+                <h1
+                  style={{
+                    fontFamily: "Nunito",
+                    fontSize: "30px",
+                    color: "#0D3B66",
+                  }}
+                >
+                  {organization.name}
+                </h1>
+                <p
+                  style={{
+                    fontFamily: "Nunito",
+                    fontSize: "18px",
+                    color: "#0D3B66",
+                  }}
+                >
+                  {organization.localization},{organization.city},{" "}
+                  {searchByCep?.state?.[0]}
+                  {searchByCep?.state?.[1]}
+                </p>
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                gap: "1rem",
+                alignItems: "center",
+                padding: "0.5rem",
+                width: "50%",
+                height: "60px",
+                background: "#e6d7d777",
+                borderRadius: "20px",
+              }}
+            >
+              <img src={wpp} alt="" />
+              <h1
+                style={{
+                  fontFamily: "Nunito",
+                  fontSize: "20px",
+                  color: "#0D3B66",
+                }}
+              >
+                {organization.phone}
+              </h1>
+            </div>
+          </div>
+        </div>
+        <ScreenLine />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "2rem",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <h1
             style={{
-              margin: "5rem",
-              border: "0.5px solid #D3E2E5",
-              width: "100vw",
+              fontFamily: "Nunito",
+              fontSize: "30px",
+              color: "#0D3B66",
+              margin: "0 23.5rem 0 0",
             }}
-          ></h1>
+          >
+            Requisitos para adoção
+          </h1>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+            }}
+          >
+            {petRule.map((rule, index) => {
+              return (
+                <h1
+                  style={{
+                    padding: "0.5rem 4rem",
+                    background: "#d42019111",
+                    border: "1px solid #F15156",
+                    borderRadius: "20px",
+                    fontFamily: "Nunito",
+                    fontSize: "20px",
+                    color: "#d42a30",
+                  }}
+                  key={index}
+                >
+                  {rule}
+                </h1>
+              );
+            })}
+          </div>
         </div>
       </Modal>
       <style>{`

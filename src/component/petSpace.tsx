@@ -17,7 +17,7 @@ export function PetSpace({ fv_food }: Pet) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        border: "2px solid #afaeae99",
+        border: "3px solid #e6d7d777",
         width: "174px",
         height: "106px",
         borderRadius: "20px",
