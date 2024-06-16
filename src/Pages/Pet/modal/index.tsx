@@ -21,6 +21,7 @@ import {
 import { SimpleMap } from "../../../component/petMapLocation";
 import { FindByOrganizationId } from "../../../component/requests/organization/findById";
 import { ScreenLine } from "../../../component/ScreenLine";
+import { Info } from "phosphor-react";
 
 const useStyle = createUseStyles({
   petPhotoStyle: {
@@ -221,7 +222,7 @@ export function PetModal() {
                 gap: "1rem",
                 alignItems: "center",
                 padding: "0.5rem",
-                width: "50%",
+                width: "70%",
                 height: "60px",
                 background: "#e6d7d777",
                 borderRadius: "20px",
@@ -278,10 +279,11 @@ export function PetModal() {
                     fontFamily: "Nunito",
                     fontSize: "20px",
                     color: "#d42a30",
+                    alignItems: "center",
                   }}
                   key={index}
                 >
-                  {rule}
+                  <Info /> {rule}
                 </h1>
               );
             })}
