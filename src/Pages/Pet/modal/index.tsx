@@ -22,6 +22,7 @@ import { SimpleMap } from "../../../component/petMapLocation";
 import { FindByOrganizationId } from "../../../component/requests/organization/findById";
 import { ScreenLine } from "../../../component/ScreenLine";
 import { Info } from "phosphor-react";
+import { FindByRequirementId } from "../../../component/requests/requirements/findById";
 
 const useStyle = createUseStyles({
   petPhotoStyle: {
@@ -63,12 +64,10 @@ export function PetModal() {
   console.log(organization);
   const { petPhotoStyle, selectedImage } = useStyle();
   const [selectedPicture, setSelectedPicture] = useState(petPhoto);
-  const petRule = [
-    "Local grande",
-    "Proibido apartamento",
-    "Ambiente frio",
-    "Cão com intolerância a lactose",
-  ];
+  console.log(pet.id);
+  const { requirements } = FindByRequirementId({ petId: pet.id });
+  console.log(requirements);
+
   const imagePet = [
     petPhoto,
     petPhoto2,
@@ -268,7 +267,7 @@ export function PetModal() {
               gap: "1rem",
             }}
           >
-            {petRule.map((rule, index) => {
+            {requirements?.map((rule) => {
               return (
                 <h1
                   style={{
@@ -281,9 +280,9 @@ export function PetModal() {
                     color: "#d42a30",
                     alignItems: "center",
                   }}
-                  key={index}
+                  key={rule.id}
                 >
-                  <Info /> {rule}
+                  <Info /> {rule.name}
                 </h1>
               );
             })}
