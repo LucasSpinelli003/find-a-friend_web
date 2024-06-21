@@ -29,7 +29,10 @@ const useStyles = createUseStyles({
   divHeaderCol: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-start",
+    alignItems: "center",
+    justifyContent: "space-between",
+    fontFamily: "Nunito",
+    fontSize: "15px",
   },
   mainCol: {
     display: "flex",
@@ -133,6 +136,14 @@ export function Home() {
         <Col>
           <div className={divHeaderCol}>
             <img src={logo} alt="" />
+            <h1
+              style={{ marginRight: "2rem", color: "#fff", cursor: "pointer" }}
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login / Cadastro
+            </h1>
           </div>
         </Col>
         <Col className={mainCol}>
