@@ -4,10 +4,13 @@ import { useState } from "react";
 interface InputLabelProps {
   label: string;
   type?: string;
+  state: React.Dispatch<React.SetStateAction<string>>;
+  value: string;
 }
 
-export function InputLabel({ label, type }: InputLabelProps) {
+export function InputLabel({ label, type, state, value }: InputLabelProps) {
   const [passwordType, setPasswordType] = useState("password");
+
   return (
     <section style={{ display: "flex", flexDirection: "column" }}>
       {type === "password" ? (
@@ -35,6 +38,10 @@ export function InputLabel({ label, type }: InputLabelProps) {
                 paddingRight: "3rem",
               }}
               type={passwordType}
+              value={value}
+              onChange={(item) => {
+                state(item.target.value);
+              }}
             />
             <div
               style={{
@@ -77,6 +84,10 @@ export function InputLabel({ label, type }: InputLabelProps) {
               paddingLeft: "1rem",
             }}
             type="text"
+            value={value}
+            onChange={(item) => {
+              state(item.target.value);
+            }}
           />
         </>
       )}
