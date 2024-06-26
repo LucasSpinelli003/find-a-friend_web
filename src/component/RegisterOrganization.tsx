@@ -1,22 +1,44 @@
 import { useState } from "react";
 import { InputLabel } from "./inputLabel";
+import { useNavigate } from "react-router-dom";
 
 export function RegisterOrganization() {
-  const [passwordType, setPasswordType] = useState("password");
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [cep, setCep] = useState("");
+  const [localization, setLocalization] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   return (
     <section>
       <form
         style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
         action=""
       >
-        <InputLabel label="Nome do responsável" />
-        <InputLabel label="Email" />
-        <InputLabel label="CEP" />
-        <InputLabel label="Endereço" />
-        <InputLabel label="Whatsapp" />
-        <InputLabel type="password" label="Senha" />
-        <InputLabel type="password" label="Confirmar Senha" />
+        <InputLabel value={name} state={setName} label="Nome do responsável" />
+        <InputLabel value={email} state={setEmail} label="Email" />
+        <InputLabel value={cep} state={setCep} label="CEP" />
+        <InputLabel
+          value={localization}
+          state={setLocalization}
+          label="Endereço"
+        />
+        <InputLabel value={whatsapp} state={setWhatsapp} label="Whatsapp" />
+        <InputLabel
+          value={password}
+          state={setPassword}
+          type="password"
+          label="Senha"
+        />
+        <InputLabel
+          value={confirmPassword}
+          state={setConfirmPassword}
+          type="password"
+          label="Confirmar Senha"
+        />
         <div
           style={{
             display: "flex",
@@ -51,6 +73,9 @@ export function RegisterOrganization() {
               fontSize: "20px",
               fontWeight: 800,
               cursor: "pointer",
+            }}
+            onClick={() => {
+              navigate("/login");
             }}
           >
             Já possui conta?

@@ -1,5 +1,8 @@
 import React, { ReactNode, createContext, useState } from "react";
-
+export interface FormProps {
+  name: string;
+  content: string;
+}
 interface ContextProps {
   city: string;
   setCity: React.Dispatch<React.SetStateAction<string>>;
@@ -9,6 +12,8 @@ interface ContextProps {
   setActualId: React.Dispatch<React.SetStateAction<string>>;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  form: FormProps[];
+  setForm: React.Dispatch<FormProps[]>;
 }
 
 interface ContextProviderProps {
@@ -22,6 +27,12 @@ export function Provider({ children }: ContextProviderProps) {
   const [preAlocatedCity, setPreAlocatedCity] = useState("Cidade");
   const [actualId, setActualId] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form, setForm] = useState([
+    {
+      name: "",
+      content: "",
+    },
+  ]);
 
   return (
     <Context.Provider
@@ -34,6 +45,8 @@ export function Provider({ children }: ContextProviderProps) {
         setActualId,
         isModalOpen,
         setIsModalOpen,
+        form,
+        setForm,
       }}
     >
       {children}
