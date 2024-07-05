@@ -1,44 +1,19 @@
-import { useState } from "react";
+export class PetClient {
+  constructor(private ) {}
 
-function PostDataExample() {
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
-
-  const handleSubmit = () => {
-    const request = {
-      key1: "value1",
-      key2: "value2",
-    };
-
-    fetch("https://api.example.com/data", {
+  async createRechargeOrder(
+    data: CreateOrganizationsRequest,
+  ): Promise<CreateOrganizationsResponse> {
+    const token = await this.cognitoClient.getAccessToken();
+    const response = await fetch(`http://localhost:3333/organizations`, {
       method: "POST",
       headers: {
+        v: "1",
+        Authorization: token.access_token,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(request),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => setResponse(data))
-      .catch((error) => setError(error));
-  };
-
-  return (
-    <div>
-      <button onClick={handleSubmit}>Send POST Request</button>
-      {error && <div>Error: {error}</div>}
-      {response && (
-        <div>
-          <h1>Response Data</h1>
-          <pre>{JSON.stringify(response, null, 2)}</pre>
-        </div>
-      )}
-    </div>
-  );
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
+    return response;
+  }
 }
-
-export default PostDataExample;

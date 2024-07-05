@@ -60,8 +60,9 @@ export function RegisterOrganization() {
               fontWeight: 800,
               cursor: "pointer",
             }}
+            onClick={() => {}}
           >
-            Login
+            Cadastrar
           </button>
           <button
             style={{
