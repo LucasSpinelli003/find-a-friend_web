@@ -1,4 +1,4 @@
-interface CreateOrganizationsRequest {
+export interface CreateOrganizationsInput {
   name: string;
   email: string;
   cep: string;
@@ -6,11 +6,16 @@ interface CreateOrganizationsRequest {
   whatsapp: string;
   password: string;
 }
-interface CreateOrganizationsResponse {
+export interface CreateOrganizationsOutput {
   name: string;
   email: string;
   cep: string;
   localization: string;
   whatsapp: string;
+  password: string;
+}
+
+export interface AuthenticateInput {
+  login: string;
   password: string;
 }

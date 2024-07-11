@@ -4,6 +4,7 @@ import { Home } from "./Pages/Home";
 import { PetsDashBoard } from "./Pages/Pets";
 import { Login } from "./Pages/Login";
 import { Register } from "./Pages/Register";
+import { Test } from "./Pages/Test/test";
 
 export function Router() {
   return (
@@ -13,6 +14,7 @@ export function Router() {
         <Route path="/pets" element={<PetsDashBoard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/test" element={<Test />} />
       </Route>
     </Routes>
   );
