@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { InputLabel } from "./inputLabel";
+import { InputLabel } from "../../../component/inputLabel";
 import { useNavigate } from "react-router-dom";
+import { OrganizationClient } from "../../../clients/organization";
+import { MessageResponse } from "../../../component/messageResponse";
 
 export function RegisterOrganization() {
   const navigate = useNavigate();
@@ -11,7 +13,24 @@ export function RegisterOrganization() {
   const [whatsapp, setWhatsapp] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [description, setDescription] = useState("");
 
+  const organizationClient = new OrganizationClient();
+  async function handleCreateOrganization() {
+    const response = await organizationClient.createOrganizations({
+      name,
+      cep,
+      city: "",
+      description,
+      email,
+      localization,
+      login: email,
+      phone: whatsapp,
+      unHashedPassword: password,
+    });
+    return response;
+  }
+  const isNotTheSamePassword = password !== confirmPassword;
   return (
     <section>
       <form
@@ -21,6 +40,11 @@ export function RegisterOrganization() {
         <InputLabel value={name} state={setName} label="Nome do responsável" />
         <InputLabel value={email} state={setEmail} label="Email" />
         <InputLabel value={cep} state={setCep} label="CEP" />
+        <InputLabel
+          value={description}
+          state={setDescription}
+          label="Descrição"
+        />
         <InputLabel
           value={localization}
           state={setLocalization}
@@ -48,19 +72,40 @@ export function RegisterOrganization() {
           }}
         >
           <button
-            style={{
-              height: "4rem",
-              width: "30rem",
-              borderRadius: "15px",
-              background: "#0D3B66",
-              border: "none",
-              color: "#fff",
-              fontFamily: "Nunito",
-              fontSize: "20px",
-              fontWeight: 800,
-              cursor: "pointer",
+            onClick={(e) => {
+              e.preventDefault();
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              const response = handleCreateOrganization();
+              // if (response !== null) {
+              // }
             }}
-            onClick={() => {}}
+            disabled={isNotTheSamePassword || password === ""}
+            style={
+              isNotTheSamePassword || password === ""
+                ? {
+                    height: "4rem",
+                    width: "30rem",
+                    borderRadius: "15px",
+                    background: "#7777",
+                    border: "none",
+                    color: "#fff",
+                    fontFamily: "Nunito",
+                    fontSize: "20px",
+                    fontWeight: 800,
+                  }
+                : {
+                    height: "4rem",
+                    width: "30rem",
+                    borderRadius: "15px",
+                    background: "#0D3B66",
+                    border: "none",
+                    color: "#fff",
+                    fontFamily: "Nunito",
+                    fontSize: "20px",
+                    fontWeight: 800,
+                    cursor: "pointer",
+                  }
+            }
           >
             Cadastrar
           </button>
@@ -81,6 +126,7 @@ export function RegisterOrganization() {
           >
             Já possui conta?
           </button>
+          <MessageResponse />
         </div>
       </form>
     </section>

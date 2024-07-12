@@ -1,6 +1,6 @@
 import petsImage from "../../assets/img/OBJECTS (1).png";
 import logo2 from "../../assets/img/Group 19.png";
-import { RegisterOrganization } from "../../component/RegisterOrganization";
+import { RegisterOrganization } from "./components/RegisterOrganization";
 
 export function Register() {
   return (

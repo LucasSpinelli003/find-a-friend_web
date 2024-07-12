@@ -1,18 +1,26 @@
+type Organization = {
+  name: string;
+  email: string;
+  cep: string;
+  city: string;
+  description: string;
+  phone: string;
+  login: string;
+  localization: string;
+};
 export interface CreateOrganizationsInput {
   name: string;
   email: string;
   cep: string;
+  city: string;
+  description: string;
+  phone: string;
+  login: string;
+  unHashedPassword: string;
   localization: string;
-  whatsapp: string;
-  password: string;
 }
 export interface CreateOrganizationsOutput {
-  name: string;
-  email: string;
-  cep: string;
-  localization: string;
-  whatsapp: string;
-  password: string;
+  organization: Organization;
 }
 
 export interface AuthenticateInput {

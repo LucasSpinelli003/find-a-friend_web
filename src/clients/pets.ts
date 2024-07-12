@@ -1,7 +1,7 @@
 import { CreatePetInput, CreatePetOutput } from "./types/pet";
 
 export class PetsClient {
-  async findUniquePet(petId: string): Promise<CreatePetOutput> {
+  async findUniquePet(petId: string): Promise<CreatePetOutput | null> {
     console.log("here");
     const response = await fetch(`http://localhost:3333/pets/${petId}`, {
       method: "GET",
