@@ -1,13 +1,3 @@
-type Organization = {
-  name: string;
-  email: string;
-  cep: string;
-  city: string;
-  description: string;
-  phone: string;
-  login: string;
-  localization: string;
-};
 export interface CreateOrganizationsInput {
   name: string;
   email: string;
@@ -20,7 +10,14 @@ export interface CreateOrganizationsInput {
   localization: string;
 }
 export interface CreateOrganizationsOutput {
-  organization: Organization;
+  name: string;
+  email: string;
+  cep: string;
+  city: string;
+  description: string;
+  phone: string;
+  login: string;
+  localization: string;
 }
 
 export interface AuthenticateInput {

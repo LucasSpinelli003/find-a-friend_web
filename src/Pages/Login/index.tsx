@@ -136,6 +136,9 @@ export function Login() {
                 fontWeight: 800,
                 cursor: "pointer",
               }}
+              onClick={async () => {
+                
+              }}
             >
               Login
             </button>
